@@ -1,0 +1,76 @@
+---
+title: "Activity 1- mtcars"
+format: html
+editor: visual
+---
+
+```{r}
+mtcars
+nrow(mtcars)
+```
+
+1\.
+
+-   Number of observations and variables
+
+    -   there are 11 columns and 32 rows
+
+-   What does each row represent?
+
+    -   each row represents the information about the particular car
+
+-   A categorical and numeric variable
+
+    -   categorical:
+
+        -   ordinal- mpg
+
+        -   nominal- car type
+
+    -   numeric:
+
+        -   discrete- carb
+
+        -   continuous- wt
+
+-   Information about the dataset (hint: use the Help tab)
+
+    -   the data is from a magazine called 1974 Motor Trend US that uses the aspects of the automobile design and the performance of 32 automobiles
+
+2.  Think and write down all possible operations you would do inside an algebra class
+    2.  PEMDAS
+3.  Convert the following variable name into something descriptive in snake case:
+
+```{r}
+a <- round(pi, digits = 2)
+```
+
+```{r}
+snake_case <- round(pi,digits = 2)
+```
+
+4.  Re-write this code such that we use the piping operators
+
+```{r}
+mean_of_dd|>
+  select(mtcars, c(disp, drat)), mean)
+```
+
+#confused
+
+5.  The functions below are commonly used on vectors:
+
+```{r}
+length()
+unique()
+sort()
+paste()
+```
+
+length(): This helps find or set the length of vectors
+
+unique(): This returns a vector but when it detects that there are multiple of the same elements/rows, it deletes them when they are returned
+
+sort(): This sorts vectors into ascending or descending order depending on which one you ask it to do
+
+paste(): This concatenates vectors when changed to a character

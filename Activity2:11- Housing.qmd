@@ -1,0 +1,61 @@
+---
+title: "Activity 2/11"
+format: html
+editor: visual
+---
+
+```{r}
+library(ggplot2)
+housing <- read.csv("https://jericholawson.github.io/classes/sds192/s26/data/housing.csv")
+```
+
+Questions:
+
+1.  Identify the number of observations and variables in this dataset.
+
+    1.  there are 20640 rows and 10 columns
+
+2.  Determine which variables are numerical and categorical.
+
+    1.  numerical
+
+        1.  discrete: housholds
+
+        2.  continuous: population
+
+    2.  categorical
+
+        1.  numerical: total rooms
+
+        2.  ordinal: median income
+
+3.  Recreate the following plot you see below using the `housing` dataset and `ggplot2`.
+
+```{r}
+ggplot(data = housing,
+       aes(x = ocean_proximity))+
+  geom_bar()
+
+
+```
+
+4.  Using code from the last problem, add to your code such that you are able to generate the following image:
+
+```{r}
+ggplot(data = housing,
+       aes(x = ocean_proximity,
+           fill = ocean_proximity))+
+  geom_bar()+
+  scale_fill_manual(values = c("darkorange4","burlywood3","azure", "darkturquoise", "aquamarine4"))
+
+```
+
+5.  Recreate the following plot you see below using the `housing` dataset and `ggplot2`.
+
+```{r}
+
+
+
+
+
+```

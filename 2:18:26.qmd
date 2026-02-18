@@ -1,0 +1,29 @@
+---
+title: "Activity 2/18/26"
+format: html
+editor: visual
+---
+
+## 
+
+```{r}
+library(mlbench)
+library(ggplot2)
+data(BostonHousing2)
+```
+
+1.  Making a box plot
+
+```{r}
+ggplot(BostonHousing2, aes(x = b, y = chas, color = chas))+
+  geom_boxplot()+
+  labs(x = "b")
+```
+
+2.  make a scatter plot or a line plot
+
+```{r}
+ggplot(BostonHousing2, aes(x = medv, y = crim))+
+  geom_line(color = "purple")+
+  labs(title = "Per Capita Crime Rates by median Value of owener-occupied homes", x = "Median value of owner-occupied homes in USD 1000's", y= "Per capita crime rate by town")
+```

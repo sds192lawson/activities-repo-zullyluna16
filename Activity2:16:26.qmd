@@ -1,0 +1,34 @@
+---
+title: "Activity 2/16/26"
+format: html
+editor: visual
+---
+
+## 
+
+```{r}
+nba_data <- read.csv("nba2024.csv", header = T)
+
+```
+
+nba_data: which variable is numeric- and which is continuous- age
+
+```{r}
+ggplot(nba_data, aes(x = Age))+
+  geom_histogram(fill = "purple", color= "white", binwidth = 10)+
+    labs(title= "Age of NBA Players, 2024 Season, USA", x = "Age of PLayers", y= "Count")+
+    geom_vline(aes(xintercept = mean(Age)), color = "red")
+
+
+```
+
+create bar plot: choose a variable that is categorical- position
+
+```{r}
+ggplot(nba_data, aes(x = Pos))+
+  geom_bar(fill= "purple", color= "white")+
+  coord_flip()+
+  labs(title= "Position of NBA Players, 2024 Season, USA", x = "Position of Players", y= "Count")
+```
+
+when using coord_flip(), use the same aes() as it were not flipped

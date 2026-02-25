@@ -1,0 +1,95 @@
+---
+title: "w5l2act.qmd"
+format: html
+editor: visual
+---
+
+#activity at the bottom
+
+```{r}
+library(mlbench)
+library(ggplot2)
+data(BostonHousing2)
+```
+
+```{r}
+ggplot(BostonHousing2, aes(x= zn, y= medv))+
+  geom_point(alpha=0.2, position= position_jitter(width=0.1, height =0.1, seed= 0))+
+  theme_minimal()+
+  labs(x="prop. of residential land zoned for lots > 25,000 sq.ft",
+       y = "median va;ue of owner occupies homes ($1000s",
+       title= "prop of residential ...")
+```
+
+```{r}
+ggplot(BostonHousing2, aes(x= zn, y= medv))+
+  geom_point(alpha=0.2, position= position_jitter(width=0.1, height =0.1, seed= 0))+
+  theme_minimal()+
+  labs(x="prop. of residential land zoned for lots > 25,000 sq.ft",
+       y = "median va;ue of owner occupies homes ($1000s",
+       title= "prop of residential ...")+
+  theme(plot.title= element_text(size= 15, color = "red"))
+
+```
+
+for y axis instead of changing color of the title, use axis.title.y
+
+**Intervals**
+
+```{r}
+ggplot(BostonHousing2, aes(x= zn, y= medv))+
+  geom_point(alpha=0.2, position= position_jitter(width=0.1, height =0.1, seed= 0))+
+  theme_minimal()+
+  labs(x="prop. of residential land zoned for lots > 25,000 sq.ft",
+       y = "median va;ue of owner occupies homes ($1000s",
+       title= "prop of residential ...")+
+  theme(plot.title= element_text(size= 15, color = "red"))+
+  scale_x_continuous(breaks= seq(0,100, by = 10))
+```
+
+for y axis instead of x axis, use scale_y_continuous
+
+**Label Angles**
+
+```{r}
+ggplot(BostonHousing2, aes(x= zn, y= medv))+
+  geom_point(alpha=0.2, position= position_jitter(width=0.1, height =0.1, seed= 0))+
+  theme_minimal()+
+  labs(x="prop. of residential land zoned for lots > 25,000 sq.ft",
+       y = "median va;ue of owner occupies homes ($1000s",
+       title= "prop of residential ...")+
+  theme(plot.title= element_text(size= 15, color = "red"),
+        axis.text.x= element_text(angle= 45))+
+  scale_x_continuous(breaks= seq(0,100, by = 10))
+
+```
+
+**Centering**
+
+```{r}
+ggplot(BostonHousing2, aes(x= zn, y= medv))+
+  geom_point(alpha=0.2, position= position_jitter(width=0.1, height =0.1, seed= 0))+
+  theme_minimal()+
+  labs(x="prop. of residential land zoned for lots > 25,000 sq.ft",
+       y = "median va;ue of owner occupies homes ($1000s",
+       title= "prop of residential ...")+
+  theme(plot.title= element_text(size= 15, color = "red", hjust= 0.5),
+        axis.text.x= element_text(angle= 45))+
+  scale_x_continuous(breaks= seq(0,100, by = 10))
+```
+
+-------------------------------------------------------------------
+
+**Activity**
+
+```{r}
+ggplot(BostonHousing2, aes(x = medv, y = chas))+
+  geom_boxplot(alpha = 0.7) +
+  labs(x = "median value of owner-occupied homes in USD 1000's",y = "Charles river dummy variable", title= "Values of owner occupied homes")+
+  theme(plot.title= element_text(size= 15, color = "green", hjust= 0.5),
+        axis.text.x= element_text(angle= 45))+
+  scale_x_continuous(breaks= seq(0,100, by = 10))
+
+```
+
+median value and Charles river dummy variable

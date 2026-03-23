@@ -1,0 +1,87 @@
+---
+title: "Activity Mar. 23"
+format: html
+editor: visual
+---
+
+## 
+
+1\)
+
+```{r}
+library(tidyverse)
+prisons <- read.csv("Prison_Boundaries.csv")
+
+```
+
+2\) what happens when we create a vector with two types represented in it? Is there a hierarchy to these types?
+
+```{r}
+x4 <- c(2, "times", TRUE, 4)
+```
+
+-   character comes first and then "2" and then "times" and then "TRUE" and then "4". if you try to create a vector with all these types, it will change them to the most flexible type which is character (1st)
+
+-   double is the next flexible type (2nd)
+
+-   integer is next (3rd)
+
+-   logical is last (4th)
+
+3\) Use the + and mean() operations on the following vectors:
+
+```{r}
+x1 <- c(1, 2, 3, 4, 5)
+x2 <- c("a", "b", "c", "d", "e")
+x3 <- c(TRUE, FALSE, FALSE, TRUE, FALSE)
+
+#x1 + x2
+#x1 + x3
+#x2 + x3
+
+#mean(x3)
+#mean(x2)
+#mean(x1)
+
+```
+
+-   get an error for x1+x2 and x2+x3 but it worked for x1+x3
+
+-   mean(x3) worked- got 0.4, mean(x2) gave an error, mean(x1) worked- got 3
+
+4\) Using `sapply(prisons, typeof)`, identify which columns in the data frame have an improper data type
+
+```{r}
+
+sapply(prisons, typeof)
+
+```
+
+-   I think TELEPHONE may have an improper data type because it is character but i think it should be integer and ZIP4 is a bunch of -999's
+
+5\) For two of these variables mentioned in Q4, correct the data type using prior code
+
+```{r}
+prisons|>
+  as.integer(TELEPHONE)
+
+```
+
+```{r}
+prisons[ ,]
+  
+```
+
+-   I am trying to remove the -999 but I am not sure how
+
+6\) Using the cheatsheet mentioned earlier, try out two different `lubridate` functions on the date/time column in the `prisons` dataset
+
+```{r}
+library(lubridate)
+
+prisons <- 
+  prisons |> 
+  mutate(SOURCEDATE = ymd_hms(SOURCEDATE))
+
+sapply(prisons, typeof)
+```

@@ -1,0 +1,65 @@
+---
+title: "Activity Mar. 25"
+format: html
+editor: visual
+---
+
+## 
+
+```{r}
+library(tidyverse)
+USAccDeaths
+```
+
+1\) Is this Tidy?
+
+-   yes it is becuase all the variables have their own column
+
+2\) Food for thought:
+
+-   the first dataset is wider the second dataset is longer
+
+-   the pros of the first dataset is seeing it clearer because they each have their own column. the pros of the second dataset is having the data in one spot because they are in the next two columns
+
+3\) How would I convert the dates on the previous slide to a date-time format?
+
+-   use as.Date() or ymd_hms()
+
+Create the deaths data frame:
+
+```{r}
+deaths <- as.data.frame(matrix(USAccDeaths, nrow = 6, ncol = 12, byrow = T))
+deaths <- deaths |> 
+  mutate(year = 1973:1978) |>
+  rename("jan" = V1, "feb" = V2, "mar" = V3,
+         "apr" = V4, "may" = V5, "jun" = V6,
+         "jul" = V7, "aug" = V8, "sep" = V9,
+         "oct" = V10, "nov" = V11, "dec" = V12) |>
+  relocate(year)
+```
+
+4\) use pivot_longer() to create 72x3 data frame that has all the deaths in a single column. assign this to deaths_longer
+
+```{r}
+deaths_longer<- deaths|>
+  pivot_longer(cols = -year, 
+                       names_to = "month",
+                       values_to = "deaths")
+print(deaths_longer)
+
+table(deaths_longer$month) #months is a factor
+
+```
+
+5\) are each of the columns of the appropriate type?
+
+yes
+
+6\) use pivot_wider() to return back to the form seem in deaths(). Assign this to deaths_wider and verify that it matches the original dataset we used
+
+```{r}
+deaths_wider<- deaths_longer|>
+  pivot_wider(names_from = "month",
+              values_from = "deaths")
+print(deaths_wider)
+```

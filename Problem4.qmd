@@ -1,0 +1,71 @@
+---
+title: "Problem 4"
+format: html
+editor: visual
+---
+
+## 
+
+**Problem 4 (Medium)**: Generate the code to convert the following data frame to wide format.
+
+```         
+# A tibble: 4 × 6
+  grp   sex   meanL   sdL meanR    sdR
+  <chr> <chr> <dbl> <dbl> <dbl>  <dbl>
+1 A     F     0.225 0.106 0.34  0.0849
+2 A     M     0.47  0.325 0.57  0.325 
+3 B     F     0.325 0.106 0.4   0.0707
+4 B     M     0.547 0.308 0.647 0.274 
+```
+
+
+The result should look like the following display.
+
+```         
+# A tibble: 2 × 9
+  grp   F.meanL F.meanR F.sdL  F.sdR M.meanL M.meanR M.sdL M.sdR
+  <chr>   <dbl>   <dbl> <dbl>  <dbl>   <dbl>   <dbl> <dbl> <dbl>
+1 A       0.225    0.34 0.106 0.0849   0.47    0.57  0.325 0.325
+2 B       0.325    0.4  0.106 0.0707   0.547   0.647 0.308 0.274
+```
+
+Hint: use `pivot_longer()` in conjunction with `pivot_wider()`.
+
+
+```{r}
+df <- data.frame(
+  grp = c("A","A","B","B"),
+  sex = c("F", "M","F","M"),
+  mean = c("0.225", "0.47", "0.325", "0.547"),
+  sdL = c("0.106", "0.325", "0.106", "0.308"),
+  meanR = c("0.34","0.57", "0.4", "0.647"),
+  sdR = c("0.0849", "0.325", "0.0707", "0.274")
+)
+
+df
+```
+
+```{r}
+library(tidyverse)
+df <- df|>
+  pivot_wider(names_from = sex ,
+                 values_from =!c(grp,sex) ) #selecting all the column values except group and sex 
+df
+```
+
+```{r}
+#new_column = old_column
+
+df <-df |>
+  rename("F.meanL"= "mean_F",
+         "F.meanR"= "meanR_F",
+         "F.sdL" = "sdL_F",
+         "F.sdR" = "sdR_F",
+         "M.meanL" = "mean_M",
+         "M.meanR" = "meanR_M",
+         "M.sdL" = "sdL_M",
+         "M.sdR" = "sdR_M",
+         )
+df
+```
+

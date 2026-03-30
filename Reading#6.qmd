@@ -1,0 +1,22 @@
+---
+title: "Reading #6 Problem 2"
+format: html
+editor: visual
+---
+
+## 
+
+```{r}
+library(tidyverse)
+mtcars_nested<- mtcars|>
+  filter(cyl == 4)|>
+  select(mpg, cyl)
+```
+
+Rewrite this in nested form on a single line. Which set of commands do you prefer and why?
+
+```{r}
+unnest(mtcars_nested)
+```
+
+I keep getting an error which means I am not using the unnest function properly but it seems like the most reasonable option here. Do the unnest and nest functions only work with lists?
